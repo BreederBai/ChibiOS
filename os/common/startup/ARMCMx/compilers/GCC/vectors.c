@@ -45,9 +45,13 @@
 /*lint -save -e9075 [8.4] All symbols are invoked from asm context.*/
 void _unhandled_exception(void) {
 /*lint -restore*/
-
-  while (true) {
-  }
+  /*
+   * Pavel Kirienko:
+   * ChibiOS handles undefined IRQ by simply looping forever, which is incorrect and can be unacceptably dangerous in
+   * certain applications. I have modified this handler to halt the system instead.
+   * Refer to my thread at http://www.chibios.com/forum/ for more info.
+   */
+  chSysHalt("UNDEFINED IRQ");
 }
 
 #if !defined(__DOXYGEN__)

@@ -51,6 +51,7 @@ void _unhandled_exception(void) {
    * certain applications. I have modified this handler to halt the system instead.
    * Refer to my thread at http://www.chibios.com/forum/ for more info.
    */
+  extern void chSysHalt(const char *);
   chSysHalt("UNDEFINED IRQ");
 }
 
